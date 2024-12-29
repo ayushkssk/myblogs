@@ -636,6 +636,29 @@
                 opacity: 0;
             }
         }
+
+        /* Festivals & Celebrations Section Styles */
+        .festivals-section {
+            background: rgba(26, 31, 53, 0.8);
+            padding: 2rem 0;
+        }
+
+        .festival-card {
+            transition: all 0.3s ease;
+        }
+
+        .festival-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .coming-soon {
+            opacity: 0.7;
+            cursor: default;
+        }
+
+        .coming-soon:hover {
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -760,6 +783,38 @@
         </a>
     </div>
 
+    <!-- Festivals & Celebrations Section -->
+    <section class="festivals-section">
+        <div class="container mx-auto px-4 py-8">
+            <h2 class="text-2xl font-bold mb-6 text-white flex items-center gap-2">
+                <span>🎉</span> Festivals & Celebrations
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- New Year Card -->
+                <a href="newyear2025.html" class="festival-card">
+                    <div class="relative overflow-hidden rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 p-6 transition-all hover:transform hover:-translate-y-2">
+                        <div class="absolute top-0 right-0 p-2">
+                            <span class="inline-block px-2 py-1 text-xs font-semibold text-white bg-red-500 rounded-full">New</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Happy New Year 2025! 🎊</h3>
+                        <p class="text-white/80 mb-4">Join us in celebrating the dawn of 2025 with wishes, countdown, and more!</p>
+                        <div class="flex items-center text-white/60 text-sm">
+                            <span>🗓️ Dec 31, 2024</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Coming Soon Card -->
+                <div class="festival-card coming-soon">
+                    <div class="relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-700 to-gray-800 p-6">
+                        <h3 class="text-xl font-bold text-white/70 mb-2">More Celebrations Coming Soon! ✨</h3>
+                        <p class="text-white/60">Stay tuned for upcoming festival celebrations and special events.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Featured App Section -->
     <section class="featured-section">
         <div class="featured-container">
@@ -823,6 +878,16 @@
                                         <li><a>Travel</a></li>
                                         <li><a>Food</a></li>
                                         <li><a>Health</a></li>
+                                    </ul>
+                                </details>
+                            </li>
+                            <li>
+                                <details>
+                                    <summary>Celebrations</summary>
+                                    <ul>
+                                        <li><a>New Year</a></li>
+                                        <li><a>Marry Christmas</a></li>
+                                        <li><a>Makar Sankranti</a></li>
                                     </ul>
                                 </details>
                             </li>

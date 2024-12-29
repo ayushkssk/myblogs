@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Welcome 2025 - A New Dawn Begins ✨</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1467810563316-b5476525c0f9?auto=format&fit=crop&q=80') center/cover;
+            opacity: 0.2;
+            animation: zoomBg 20s infinite alternate;
+        }
+
+        @keyframes zoomBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF69B4, #00CED1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)); }
+        }
+
+        .countdown {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            min-width: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Wishes Section */
+        .wishes {
+            padding: 4rem 2rem;
+            background: linear-gradient(to bottom, #000428, #000000);
+        }
+
+        .wish-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wish-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            animation: borderFlow 2s linear infinite;
+        }
+
+        @keyframes borderFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .wish-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .wish-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .wish-author {
+            color: #FFD700;
+            font-style: italic;
+        }
+
+        /* Interactive Elements */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkleFloat 3s linear infinite;
+        }
+
+        @keyframes sparkleFloat {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: none;
+            position: relative;
+            animation: buttonGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Custom Cursor Styles */
+        html, body, * {
+            cursor: none !important;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #FFD700;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 99999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            z-index: 99998;
+            transition: all 0.2s ease-out;
+            mix-blend-mode: difference;
+        }
+
+        /* Cursor States */
+        .cursor-hover {
+            transform: scale(2);
+            background: rgba(255, 215, 0, 0.1);
+            border-color: rgba(255, 215, 0, 0.8);
+        }
+
+        .cursor-click {
+            transform: scale(0.8);
+            background: rgba(255, 215, 0, 0.3);
+        }
+
+        /* Enhanced Trail Effect */
+        .cursor-trail {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            pointer-events: none;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.5);
+            z-index: 99997;
+            mix-blend-mode: screen;
+            animation: trailFade 0.8s linear forwards;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
+        /* Interactive Element Cursors */
+        .wish-card:hover ~ .cursor-outline {
+            transform: scale(1.5);
+            border-color: #FF69B4;
+            background: rgba(255, 105, 180, 0.1);
+        }
+
+        .cta-button:hover ~ .cursor-outline {
+            transform: scale(1.8);
+            border-color: #00CED1;
+            background: rgba(0, 206, 209, 0.1);
+        }
+
+        .countdown-item:hover ~ .cursor-outline {
+            transform: scale(1.3);
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Ensure all interactive elements have no default cursor */
+        button, a, .wish-card, .countdown-item, 
+        input, select, textarea {
+            cursor: none !important;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .countdown {
+                gap: 1rem;
+            }
+
+            .countdown-item {
+                min-width: 120px;
+                padding: 1.5rem;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Fireworks Animations */
+        .firework-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        .firework {
+            position: absolute;
+            bottom: -20px;
+            transform-origin: bottom;
+            animation: launch 1.5s ease-out forwards;
+        }
+
+        .firework::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #FFD700;
+            border-radius: 50%;
+            animation: trail 1.5s ease-out forwards;
+        }
+
+        @keyframes launch {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-50vh) scale(1);
+            }
+            100% {
+                transform: translateY(-100vh) scale(0);
+            }
+        }
+
+        @keyframes trail {
+            0% {
+                opacity: 1;
+                box-shadow: 0 0 5px #FFD700;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .explosion {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+
+        .explosion-particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: particle 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+
+        @keyframes particle {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .twinkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 0.8s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(0.2);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Guide Message Styles */
+        .guide-message {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 25px;
+            border-radius: 20px;
+            color: white;
+            font-size: 1.2rem;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            animation: messageFloat 2s ease-in-out infinite;
+        }
+
+        .guide-arrow {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-left: 3px solid #FFD700;
+            border-bottom: 3px solid #FFD700;
+            transform: translateX(-50%) rotate(-45deg);
+            animation: arrowBounce 1s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        @keyframes messageFloat {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        @keyframes arrowBounce {
+            0%, 100% {
+                transform: translateX(-50%) rotate(-45deg) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) rotate(-45deg) translateY(10px);
+            }
+        }
+
+        /* Floating Toggle Button */
+        .design-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 10000;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #FFD700;
+            border-radius: 12px;
+            padding: 8px 12px;
+            color: white;
+            font-size: 0.85rem;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            cursor: none;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .design-toggle:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.2);
+        }
+
+        .design-toggle::before {
+            content: '✨';
+            font-size: 0.9em;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .footer-content a {
+            color: #FFD700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-content a:hover {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .footer-content svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    <div class="firework-container"></div>
+    <div class="guide-message" id="guideMessage">
+        ✨ Click to see magical fireworks! ✨
+    </div>
+    <div class="guide-arrow" id="guideArrow"></div>
+    <a href="new-year-2025.html" class="design-toggle">
+        Alt Design
+    </a>
+    <main>
+        <section class="hero">
+            <div class="content">
+                <h1 class="main-title" data-aos="zoom-in">2025</h1>
+                <p class="subtitle" data-aos="fade-up" data-aos-delay="200" 
+                   style="font-size: 1.5rem; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem;">
+                    A New Chapter Begins
+                </p>
+
+                <div class="countdown" data-aos="fade-up" data-aos-delay="400">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+
+                <button class="cta-button" onclick="createSparkles(event)" data-aos="fade-up" data-aos-delay="600">
+                    Celebrate with Us! ✨
+                </button>
+            </div>
+        </section>
+
+        <section class="wishes">
+            <div class="wish-grid">
+                <div class="wish-card" data-aos="fade-up">
+                    <p class="wish-text">
+                        "May the coming year be filled with endless possibilities, 
+                        boundless joy, and remarkable achievements. Here's to new 
+                        beginnings and unforgettable moments!"
+                    </p>
+                    <p class="wish-author">- Your Blog Family</p>
+                </div>
+                <div class="wish-card" data-aos="fade-up" data-aos-delay="200">
+                    <p class="wish-text">
+                        "As we step into 2025, let's embrace the unknown with courage, 
+                        chase our dreams with passion, and create memories that will 
+                        last a lifetime."
+                    </p>
+                    <p class="wish-author">- The Community</p>
+                </div>
+                <div class="wish-card" data-aos="fade-up" data-aos-delay="400">
+                    <p class="wish-text">
+                        "Here's to 365 new days, 365 new chances, and 365 new opportunities. 
+                        May 2025 be your best year yet!"
+                    </p>
+                    <p class="wish-author">- Your Friends</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            Designed with ❤️ by 
+            <a href="https://it4b.in" target="_blank">Ayush</a>
+            • 
+            <a href="https://instagram.com/ayushkssk" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                @ayushkssk
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const newYear = new Date('January 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = newYear - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        // Sparkle Effect
+        function createSparkles(e) {
+            const colors = ['#FFD700', '#FFA500', '#FF69B4', '#00CED1'];
+            const sparkleCount = 50;
+
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = `${e.clientX}px`;
+                sparkle.style.top = `${e.clientY}px`;
+                sparkle.style.width = `${Math.random() * 10 + 5}px`;
+                sparkle.style.height = sparkle.style.width;
+                sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.transform = `rotate(${Math.random() * 360}deg)`;
+                sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 3000);
+            }
+        }
+
+        // Enhanced Fireworks System
+        function createFirework(x) {
+            const colors = [
+                '#FFD700', // Gold
+                '#FF6B6B', // Red
+                '#4ECDC4', // Cyan
+                '#45B7D1', // Light Blue
+                '#96CEB4', // Mint
+                '#FF9999', // Pink
+                '#FFCD94'  // Orange
+            ];
+
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.style.left = `${x}px`;
+            
+            document.querySelector('.firework-container').appendChild(firework);
+
+            // Create explosion after launch
+            setTimeout(() => {
+                createExplosion(x, window.innerHeight * 0.3);
+                firework.remove();
+            }, 1500);
+        }
+
+        function createExplosion(x, y) {
+            const particles = 36;
+            const circles = 3;
+            const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#FF9999'];
+
+            for(let circle = 0; circle < circles; circle++) {
+                const delay = circle * 100;
+                const scale = 1 - circle * 0.2;
+
+                for(let i = 0; i < particles; i++) {
+                    const angle = (i * 360) / particles;
+                    const velocity = 100 + Math.random() * 100;
+                    const particle = document.createElement('div');
+                    particle.className = 'explosion-particle';
+                    particle.style.left = `${x}px`;
+                    particle.style.top = `${y}px`;
+                    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    particle.style.setProperty('--tx', `${Math.cos(angle * Math.PI / 180) * velocity * scale}px`);
+                    particle.style.setProperty('--ty', `${Math.sin(angle * Math.PI / 180) * velocity * scale}px`);
+                    particle.style.animationDelay = `${delay}ms`;
+
+                    document.querySelector('.firework-container').appendChild(particle);
+
+                    setTimeout(() => particle.remove(), 2000);
+                }
+            }
+
+            // Add twinkle effects
+            for(let i = 0; i < 20; i++) {
+                const twinkle = document.createElement('div');
+                twinkle.className = 'twinkle';
+                twinkle.style.left = `${x + (Math.random() - 0.5) * 200}px`;
+                twinkle.style.top = `${y + (Math.random() - 0.5) * 200}px`;
+                twinkle.style.animationDelay = `${Math.random() * 800}ms`;
+                
+                document.querySelector('.firework-container').appendChild(twinkle);
+                
+                setTimeout(() => twinkle.remove(), 2000);
+            }
+        }
+
+        function createSparkles(e) {
+            // Launch multiple fireworks
+            const count = 3 + Math.floor(Math.random() * 3);
+            for(let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const x = e.clientX + (Math.random() - 0.5) * 200;
+                    createFirework(x);
+                }, i * 300);
+            }
+        }
+
+        // Enhanced Cursor Movement with better performance
+        const cursor = {
+            dot: document.querySelector('.cursor-dot'),
+            outline: document.querySelector('.cursor-outline'),
+            pos: { x: 0, y: 0 },
+            dotPos: { x: 0, y: 0 },
+            outlinePos: { x: 0, y: 0 },
+            visible: true,
+            trailTimeout: null,
+            init() {
+                // Mouse movement
+                document.addEventListener('mousemove', (e) => {
+                    this.pos.x = e.clientX;
+                    this.pos.y = e.clientY;
+                    this.createTrail();
+                });
+
+                // Show/Hide cursor
+                document.addEventListener('mouseleave', () => this.hide());
+                document.addEventListener('mouseenter', () => this.show());
+                document.addEventListener('mousedown', () => this.click());
+                document.addEventListener('mouseup', () => this.unclick());
+
+                // Start animation
+                this.animate();
+                this.addHoverListeners();
+            },
+            animate() {
+                const ease = 0.15;
+                
+                // Smooth dot movement
+                this.dotPos.x += (this.pos.x - this.dotPos.x) * ease;
+                this.dotPos.y += (this.pos.y - this.dotPos.y) * ease;
+                this.dot.style.transform = `translate(${this.dotPos.x}px, ${this.dotPos.y}px)`;
+
+                // Smooth outline movement with slight delay
+                this.outlinePos.x += (this.pos.x - this.outlinePos.x) * (ease - 0.05);
+                this.outlinePos.y += (this.pos.y - this.outlinePos.y) * (ease - 0.05);
+                this.outline.style.transform = `translate(${this.outlinePos.x}px, ${this.outlinePos.y}px)`;
+
+                requestAnimationFrame(() => this.animate());
+            },
+            createTrail() {
+                if (Math.random() < 0.3) {  // Reduced trail frequency for better performance
+                    const trail = document.createElement('div');
+                    trail.className = 'cursor-trail';
+                    trail.style.left = `${this.pos.x}px`;
+                    trail.style.top = `${this.pos.y}px`;
+                    document.body.appendChild(trail);
+                    
+                    setTimeout(() => trail.remove(), 800);
+                }
+            },
+            hide() {
+                this.visible = false;
+                this.dot.style.opacity = 0;
+                this.outline.style.opacity = 0;
+            },
+            show() {
+                this.visible = true;
+                this.dot.style.opacity = 1;
+                this.outline.style.opacity = 1;
+            },
+            click() {
+                this.outline.classList.add('cursor-click');
+                this.dot.style.transform = 'scale(0.5)';
+            },
+            unclick() {
+                this.outline.classList.remove('cursor-click');
+                this.dot.style.transform = 'scale(1)';
+            },
+            addHoverListeners() {
+                const elements = document.querySelectorAll('a, button, .wish-card, .countdown-item');
+                elements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        this.outline.classList.add('cursor-hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        this.outline.classList.remove('cursor-hover');
+                    });
+                });
+            }
+        };
+
+        // Initialize cursor system
+        document.addEventListener('DOMContentLoaded', () => {
+            cursor.init();
+        });
+
+        // Remove guide after first click
+        document.querySelector('.cta-button').addEventListener('click', () => {
+            const message = document.getElementById('guideMessage');
+            const arrow = document.getElementById('guideArrow');
+            if (message) message.style.display = 'none';
+            if (arrow) arrow.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2025! 🎉</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .new-year-hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1f35 0%, #2d3250 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .countdown-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .new-year-title {
+            font-size: 5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff4d4d, #f6644e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .new-year-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .wishes-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .wish-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .wish-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .wish-author {
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+        }
+
+        .share-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .share-button {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .share-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Indian Theme Colors */
+        :root {
+            --color-saffron: #FF9933;
+            --color-white: #FFFFFF;
+            --color-green: #138808;
+            --color-navy: #000080;
+            --color-chakra: #000088;
+        }
+
+        /* Enhanced Fireworks */
+        .firework {
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .firework::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: fireworkParticle 2s ease-out forwards;
+        }
+
+        @keyframes fireworkParticle {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+                box-shadow: 
+                    0 0 0 0 var(--color-saffron),
+                    0 0 0 0 var(--color-white),
+                    0 0 0 0 var(--color-green);
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+                box-shadow: 
+                    -50px -100px 0 var(--color-saffron),
+                    50px -100px 0 var(--color-white),
+                    0 -100px 0 var(--color-green),
+                    -100px -50px 0 var(--color-saffron),
+                    100px -50px 0 var(--color-white),
+                    0 150px 0 var(--color-green),
+                    -50px 100px 0 var(--color-saffron),
+                    50px 100px 0 var(--color-white),
+                    0 100px 0 var(--color-green);
+            }
+        }
+
+        /* Chakra Animation */
+        .chakra {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            opacity: 0.8;
+            animation: chakraSpin 4s linear infinite;
+        }
+
+        @keyframes chakraSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Diya Lights */
+        .diya {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(255, 153, 51, 0.8) 0%,
+                rgba(255, 153, 51, 0.4) 50%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: diyaGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes diyaGlow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* Rangoli Pattern */
+        .rangoli {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: 
+                radial-gradient(circle at 50% 50%,
+                    transparent 30%,
+                    rgba(255, 153, 51, 0.2) 40%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(19, 136, 8, 0.2) 60%,
+                    transparent 70%);
+            animation: rangoliSpin 20s linear infinite;
+        }
+
+        @keyframes rangoliSpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Particle Animation */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleExplode 1s ease-out forwards;
+        }
+
+        @keyframes particleExplode {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(var(--y, -100px)) translateX(var(--x, 100px));
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .new-year-title {
+                font-size: 3rem;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="new-year-hero">
+        <div class="content-wrapper">
+            <h1 class="new-year-title">Happy New Year 2025!</h1>
+            <p class="new-year-subtitle">Counting down to a year of new possibilities...</p>
+
+            <div class="countdown-container">
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wishes-container">
+                <div class="wish-card">
+                    <p class="wish-text">
+                        "As we step into 2025, may your dreams take flight, your aspirations find wings, 
+                        and your journey be filled with endless possibilities. Here's to new beginnings, 
+                        cherished memories, and the beautiful chapters waiting to be written."
+                    </p>
+                    <p class="wish-author">- Your Blogging Family</p>
+                </div>
+
+                <div class="wish-card">
+                    <p class="wish-text">
+                        "Let's welcome 2025 with open hearts and minds, ready to embrace the changes, 
+                        challenges, and victories that await us. May this year bring you joy, success, 
+                        and countless moments worth celebrating!"
+                    </p>
+                    <p class="wish-author">- The Community</p>
+                </div>
+            </div>
+
+            <div class="share-section">
+                <a href="#share" class="share-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                        <polyline points="16 6 12 2 8 6"></polyline>
+                        <line x1="12" y1="2" x2="12" y2="15"></line>
+                    </svg>
+                    Share Your Wishes
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const newYear = new Date('January 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = newYear - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+        }
+
+        // Enhanced Fireworks with Indian Colors
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * (window.innerHeight * 0.7);
+            
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+            
+            // Random Indian flag colors
+            const colors = ['var(--color-saffron)', 'var(--color-white)', 'var(--color-green)'];
+            firework.style.setProperty('--color', colors[Math.floor(Math.random() * colors.length)]);
+            
+            document.querySelector('.new-year-hero').appendChild(firework);
+            
+            setTimeout(() => {
+                firework.remove();
+            }, 2000);
+        }
+
+        // Create Diya Lights
+        function createDiyas() {
+            const container = document.querySelector('.new-year-hero');
+            const diyas = 20; // Number of diyas
+
+            for(let i = 0; i < diyas; i++) {
+                const diya = document.createElement('div');
+                diya.className = 'diya';
+                diya.style.left = `${Math.random() * 100}vw`;
+                diya.style.top = `${Math.random() * 100}vh`;
+                container.appendChild(diya);
+            }
+        }
+
+        // Create Rangoli Patterns
+        function createRangoli() {
+            const container = document.querySelector('.new-year-hero');
+            const rangoli = document.createElement('div');
+            rangoli.className = 'rangoli';
+            rangoli.style.left = '50%';
+            rangoli.style.top = '50%';
+            rangoli.style.transform = 'translate(-50%, -50%)';
+            container.appendChild(rangoli);
+        }
+
+        // Create Chakras
+        function createChakras() {
+            const container = document.querySelector('.new-year-hero');
+            const chakrasCount = 5;
+
+            for(let i = 0; i < chakrasCount; i++) {
+                const chakra = document.createElement('div');
+                chakra.className = 'chakra';
+                chakra.innerHTML = '☸️'; // Chakra emoji
+                chakra.style.left = `${Math.random() * 100}vw`;
+                chakra.style.top = `${Math.random() * 100}vh`;
+                container.appendChild(chakra);
+            }
+        }
+
+        // Initialize all effects
+        document.addEventListener('DOMContentLoaded', () => {
+            createDiyas();
+            createRangoli();
+            createChakras();
+            setInterval(createFirework, 800); // Reduced frequency for better performance
+            setInterval(updateCountdown, 1000);
+        });
+
+        // Particle Burst Effect
+        function createParticleBurst(x, y, color) {
+            const particles = 10;
+            const container = document.querySelector('.new-year-hero');
+
+            for(let i = 0; i < particles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.backgroundColor = color;
+                particle.style.transform = `rotate(${(i * 360) / particles}deg)`;
+                container.appendChild(particle);
+
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+
+        // Add click effect for interactive fireworks
+        document.querySelector('.new-year-hero').addEventListener('click', (e) => {
+            const colors = ['var(--color-saffron)', 'var(--color-white)', 'var(--color-green)'];
+            createParticleBurst(e.clientX, e.clientY, colors[Math.floor(Math.random() * colors.length)]);
+        });
+    </script>
+</body>
+</html>
