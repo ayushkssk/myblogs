@@ -1,71 +1,79 @@
-import { ref, push, set, get, remove, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import { ref, push, set, get, update, remove, query, orderByChild, equalTo, onValue } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 import { database } from './firebase-config.js';
 
-// Blog operations
+// Blog posts operations
 export const blogOperations = {
-    // Add a new post
-    async addPost(postData) {
+    // नया ब्लॉग पोस्ट जोड़ें
+    addPost: async function(postData) {
         try {
             const postsRef = ref(database, 'posts');
             const newPostRef = push(postsRef);
-            
             await set(newPostRef, {
-                ...postData,
-                id: newPostRef.key,
+                title: postData.title,
+                content: postData.content,
+                category: postData.category,
+                imageUrl: postData.imageUrl,
+                author: postData.author,
                 timestamp: Date.now()
             });
-
-            return { success: true };
+            return { success: true, postId: newPostRef.key };
         } catch (error) {
-            console.error("Error adding post:", error);
+            console.error('Error adding post:', error);
             return { success: false, error: error.message };
         }
     },
 
-    // Get all posts
-    getAllPosts(callback) {
+    // सभी ब्लॉग पोस्ट्स प्राप्त करें
+    getAllPosts: function(callback) {
         const postsRef = ref(database, 'posts');
-        get(postsRef).then((snapshot) => {
+        onValue(postsRef, (snapshot) => {
             const posts = [];
-            if (snapshot.exists()) {
-                snapshot.forEach((childSnapshot) => {
-                    posts.push(childSnapshot.val());
+            snapshot.forEach((childSnapshot) => {
+                posts.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
                 });
-            }
+            });
             callback(posts);
-        }).catch((error) => {
-            console.error("Error getting posts:", error);
-            callback([]);
         });
     },
 
-    // Get posts by category
-    getPostsByCategory(category, callback) {
+    // श्रेणी के अनुसार पोस्ट्स प्राप्त करें
+    getPostsByCategory: function(category, callback) {
         const postsRef = ref(database, 'posts');
         const categoryQuery = query(postsRef, orderByChild('category'), equalTo(category));
-        
-        get(categoryQuery).then((snapshot) => {
+        onValue(categoryQuery, (snapshot) => {
             const posts = [];
-            if (snapshot.exists()) {
-                snapshot.forEach((childSnapshot) => {
-                    posts.push(childSnapshot.val());
+            snapshot.forEach((childSnapshot) => {
+                posts.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
                 });
-            }
+            });
             callback(posts);
-        }).catch((error) => {
-            console.error("Error getting posts by category:", error);
-            callback([]);
         });
     },
 
-    // Delete a post
-    async deletePost(postId) {
+    // एक पोस्ट अपडेट करें
+    updatePost: async function(postId, updateData) {
+        try {
+            const postRef = ref(database, `posts/${postId}`);
+            await update(postRef, updateData);
+            return { success: true };
+        } catch (error) {
+            console.error('Error updating post:', error);
+            return { success: false, error: error.message };
+        }
+    },
+
+    // एक पोस्ट डिलीट करें
+    deletePost: async function(postId) {
         try {
             const postRef = ref(database, `posts/${postId}`);
             await remove(postRef);
             return { success: true };
         } catch (error) {
-            console.error("Error deleting post:", error);
+            console.error('Error deleting post:', error);
             return { success: false, error: error.message };
         }
     }
