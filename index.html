@@ -81,6 +81,7 @@
                                 <span class="badge badge-primary">Pro</span>
                             </a>
                         </li>
+                        <li><a href="admin.html"><i class="fas fa-cog"></i> Admin Panel</a></li>
                         <li><a onclick="showCreatePostModal()" class="text-primary"><i class="fas fa-plus-circle"></i> Create Post</a></li>
                         <li><a onclick="logout()" class="text-error"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                     </ul>
@@ -99,7 +100,7 @@
             <div class="max-w-md">
                 <h1 class="mb-5 text-5xl font-bold">Welcome to IT4B Blogs</h1>
                 <p class="mb-5">Share your thoughts, experiences, and knowledge with the world. Join our community of writers and readers.</p>
-                <button class="btn btn-primary" onclick="showCreatePostModal()" id="createPostBtn">
+                <button class="btn btn-primary" id="heroCreatePostBtn" onclick="redirectToAdmin()">
                     <i class="fas fa-pen-to-square mr-2"></i> Start Writing
                 </button>
             </div>

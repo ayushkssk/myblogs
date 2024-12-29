@@ -9,6 +9,7 @@ const postsContainer = document.getElementById('postsContainer');
 const alert = document.getElementById('alert');
 const alertContent = document.getElementById('alertContent');
 const alertMessage = document.getElementById('alertMessage');
+const heroCreatePostBtn = document.getElementById('heroCreatePostBtn');
 
 let currentUser = null;
 
@@ -49,69 +50,105 @@ window.logout = async function() {
 }
 
 // Show/Hide Create Post Modal
-window.showCreatePostModal = function() {
-    if (!currentUser) {
+window.showCreatePostModal = () => {
+    if (!auth.currentUser) {
+        showAlert('Please login to create a post', 'warning');
         window.location.href = 'login.html';
         return;
     }
-    createPostModal.showModal();
-}
+    if (createPostModal) {
+        createPostModal.showModal();
+    } else {
+        console.error('Modal element not found');
+        showAlert('Error opening post form', 'error');
+    }
+};
 
-window.closeCreatePostModal = function() {
-    createPostModal.close();
-}
+window.closeCreatePostModal = () => {
+    if (createPostModal) {
+        createPostModal.close();
+    }
+};
 
 // Quick Fill Post (for testing)
-window.quickFillPost = function() {
+window.quickFillPost = () => {
     document.getElementById('postTitle').value = 'My First Blog Post';
     document.getElementById('postCategory').value = 'Technology';
     document.getElementById('postContent').value = 'This is a sample blog post content. I am testing the blogging platform!';
     document.getElementById('postImage').value = 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80';
 };
 
-// Create Post
-window.createPost = async function() {
-    if (!currentUser) {
-        showAlert('Please login to create a post', 'error');
+// Create Post Function
+window.createPost = async () => {
+    if (!auth.currentUser) {
+        showAlert('Please login to create a post', 'warning');
+        window.location.href = 'login.html';
         return;
     }
 
     const title = document.getElementById('postTitle').value;
-    const content = document.getElementById('postContent').value;
     const category = document.getElementById('postCategory').value;
-    const imageUrl = document.getElementById('postImage').value || 'https://picsum.photos/800/400';
+    const content = document.getElementById('postContent').value;
+    const imageUrl = document.getElementById('postImage').value;
 
-    if (!title || !content || !category) {
+    if (!title || !category || !content) {
         showAlert('Please fill all required fields', 'error');
         return;
     }
 
     try {
-        const result = await window.blogOperations.addPost({
+        await window.blogOperations.createPost({
             title,
-            content,
             category,
+            content,
             imageUrl,
-            author: currentUser.displayName || currentUser.email,
-            authorId: currentUser.uid
+            authorId: auth.currentUser.uid,
+            authorName: auth.currentUser.displayName || 'Anonymous',
+            createdAt: new Date().toISOString()
         });
 
-        if (result.success) {
-            showAlert('Post created successfully!', 'success');
-            closeCreatePostModal();
-            loadPosts();
-            // Reset form
-            document.getElementById('postTitle').value = '';
-            document.getElementById('postContent').value = '';
-            document.getElementById('postCategory').value = '';
-            document.getElementById('postImage').value = '';
-        } else {
-            showAlert(result.error, 'error');
-        }
+        showAlert('Post created successfully!', 'success');
+        closeCreatePostModal();
+        // Clear form
+        document.getElementById('postTitle').value = '';
+        document.getElementById('postCategory').value = '';
+        document.getElementById('postContent').value = '';
+        document.getElementById('postImage').value = '';
+        loadPosts(); // Refresh posts
     } catch (error) {
-        showAlert(error.message, 'error');
+        console.error('Error creating post:', error);
+        showAlert('Error creating post. Please try again.', 'error');
     }
-}
+};
+
+// Redirect to Admin Page
+window.redirectToAdmin = () => {
+    if (!auth.currentUser) {
+        showAlert('Please login to create a post', 'warning');
+        window.location.href = 'login.html';
+        return;
+    }
+    window.location.href = 'admin.html#create';
+};
+
+// Show Alert
+window.showAlert = (message, type = 'info') => {
+    const alert = document.getElementById('alert');
+    const alertContent = document.getElementById('alertContent');
+    const alertMessage = document.getElementById('alertMessage');
+
+    alertContent.className = 'alert';
+    if (type === 'error') alertContent.classList.add('alert-error');
+    if (type === 'success') alertContent.classList.add('alert-success');
+    if (type === 'warning') alertContent.classList.add('alert-warning');
+
+    alertMessage.textContent = message;
+    alert.classList.remove('hidden');
+
+    setTimeout(() => {
+        alert.classList.add('hidden');
+    }, 3000);
+};
 
 // Load Posts
 async function loadPosts() {
@@ -207,18 +244,6 @@ window.deletePost = async function(postId) {
             showAlert(error.message, 'error');
         }
     }
-}
-
-// Show alert message
-function showAlert(message, type = 'error') {
-    alert.classList.remove('hidden');
-    alertContent.classList.remove('alert-error', 'alert-success');
-    alertContent.classList.add(`alert-${type}`);
-    alertMessage.textContent = message;
-    
-    setTimeout(() => {
-        alert.classList.add('hidden');
-    }, 5000);
 }
 
 // Initial load
