@@ -1,0 +1,22 @@
+/* Custom styles to complement DaisyUI */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1200/400');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.card-body p {
+    color: hsl(var(--bc) / 0.8);
+}
+
+/* Smooth transitions for theme switching */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
