@@ -9,6 +9,213 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.19/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Announcement Banner Styles */
+        .top-banner {
+            background: linear-gradient(90deg, #4171f5 0%, #6086f5 100%);
+            height: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 0 24px;
+            height: 100%;
+            position: relative;
+        }
+
+        .banner-badge {
+            background: #ff5b7f;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(255, 91, 127, 0.3);
+        }
+
+        .banner-text {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .banner-features {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .feature-dot {
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .banner-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-left: auto;
+        }
+
+        .banner-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .banner-icon {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Shine effect */
+        .shine-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .animate-slide {
+            animation: slide 25s linear infinite;
+        }
+
+        .announcement-slider:hover {
+            animation-play-state: paused;
+        }
+
+        .announcement-banner {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .announcement-content {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .announcement-content::before,
+        .announcement-content::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 4rem;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .announcement-content::before {
+            left: 0;
+            background: linear-gradient(to right, #2563eb, transparent);
+        }
+
+        .announcement-content::after {
+            right: 0;
+            background: linear-gradient(to left, #2563eb, transparent);
+        }
+
+        .new-badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8787);
+            padding: 0.2rem 0.6rem;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .learn-more-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .learn-more-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .announcement-link {
+            transition: all 0.3s ease;
+        }
+
+        .announcement-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .announcement-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -46,6 +253,45 @@
         </div>
     </div>
 
+    <!-- New App Announcement Banner -->
+    <div class="top-banner">
+        <div class="shine-effect"></div>
+        <div class="banner-content">
+            <span class="banner-badge">NEW</span>
+            <div class="banner-text">
+                <svg class="banner-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/>
+                </svg>
+                Introducing Pratappur Village App 7.0
+            </div>
+            <div class="banner-features">
+                <div class="feature-item">
+                    <svg class="banner-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/>
+                    </svg>
+                    Google Login
+                </div>
+                <span class="feature-dot"></span>
+                <div class="feature-item">
+                    <svg class="banner-icon" viewBox="0 0 24 24">
+                        <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" fill="currentColor"/>
+                    </svg>
+                    Cloud Sync
+                </div>
+                <span class="feature-dot"></span>
+                <div class="feature-item">
+                    <svg class="banner-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"/>
+                    </svg>
+                    Enhanced UI
+                </div>
+            </div>
+            <a href="app-details.html" class="banner-btn">
+                Learn More →
+            </a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <div class="hero min-h-[40vh] bg-base-200">
         <div class="hero-content text-center">
@@ -71,7 +317,17 @@
                                     <summary>Technology</summary>
                                     <ul>
                                         <li><a>Web Development</a></li>
-                                        <li><a>Mobile Apps</a></li>
+                                        <li>
+                                            <details>
+                                                <summary>Mobile Apps</summary>
+                                                <ul>
+                                                    <li><a href="app-details.html" class="flex items-center gap-2">
+                                                        <span class="badge badge-primary">New</span>
+                                                        Pratappur Village App
+                                                    </a></li>
+                                                </ul>
+                                            </details>
+                                        </li>
                                         <li><a>AI & ML</a></li>
                                     </ul>
                                 </details>
@@ -149,6 +405,24 @@
         // Make operations available globally
         window.blogOperations = blogOperations;
         window.commentOperations = commentOperations;
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.querySelector('.announcement-slider');
+            
+            // Clone the announcement for seamless loop
+            const announcement = slider.innerHTML;
+            slider.innerHTML = announcement + announcement;
+
+            // Pause animation on hover
+            slider.addEventListener('mouseenter', () => {
+                slider.style.animationPlayState = 'paused';
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                slider.style.animationPlayState = 'running';
+            });
+        });
     </script>
 </body>
 </html>
