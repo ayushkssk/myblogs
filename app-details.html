@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratappur App - Digital Village Companion</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e4d2b 0%, #006400 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #006400 0%, #1e4d2b 100%);
+        }
+        .download-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        .stats-gradient {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        /* Language Toggle Switch */
+        .lang-switch {
+            width: 80px;
+            height: 34px;
+            position: relative;
+            display: inline-block;
+        }
+        .lang-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .lang-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255,255,255,0.2);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .lang-slider:before {
+            position: absolute;
+            content: "EN";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 26px;
+            font-size: 12px;
+            color: #006400;
+            font-weight: bold;
+        }
+        input:checked + .lang-slider:before {
+            transform: translateX(46px);
+            content: "हि";
+        }
+        [data-lang="hi"] {
+            display: none;
+        }
+        .lang-hi [data-lang="en"] {
+            display: none;
+        }
+        .lang-hi [data-lang="hi"] {
+            display: block;
+        }
+        .lang-hi [data-lang="hi-inline"] {
+            display: inline;
+        }
+        .version-card {
+            transition: all 0.3s ease;
+        }
+        .version-card:hover {
+            transform: scale(1.02);
+        }
+        .version-card.selected {
+            border-color: #48bb78;
+        }
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .version-info {
+            transition: all 0.3s ease;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50" id="mainContent">
+    <!-- Header -->
+    <header class="gradient-bg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <img src="pratappur-logo.png" alt="Pratappur Logo" class="h-12 w-12 rounded-lg">
+                    <span class="ml-3 text-white text-xl font-bold">Pratappur</span>
+                </div>
+                <div class="flex items-center space-x-8">
+                    <!-- Language Toggle Switch -->
+                    <div class="flex items-center">
+                        <label class="lang-switch">
+                            <input type="checkbox" id="langToggle">
+                            <span class="lang-slider"></span>
+                        </label>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#features" class="text-white hover:text-gray-200" data-lang="en">Features</a>
+                        <a href="#features" class="text-white hover:text-gray-200" data-lang="hi">विशेषताएं</a>
+                        <a href="#download" class="text-white hover:text-gray-200" data-lang="en">Download</a>
+                        <a href="#download" class="text-white hover:text-gray-200" data-lang="hi">डाउनलोड</a>
+                        <a href="#contact" class="text-white hover:text-gray-200" data-lang="en">Contact</a>
+                        <a href="#contact" class="text-white hover:text-gray-200" data-lang="hi">संपर्क</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <div class="container mx-auto px-6 py-16 text-center">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">
+                        <span data-lang="en">Pratappur Village</span>
+                        <span data-lang="hi">प्रतापपुर ग्राम</span>
+                    </h1>
+                    <p class="text-xl text-gray-200 mb-8">
+                        <span data-lang="en">Your Digital Village Companion</span>
+                        <span data-lang="hi">आपके गाँव का डिजिटल साथी</span>
+                    </p>
+                    <a href="#download" class="inline-block bg-white text-green-800 font-semibold px-8 py-3 rounded-full hover:bg-gray-100 transition duration-300">
+                        <span data-lang="en">Download Now</span>
+                        <span data-lang="hi">डाउनलोड करें</span>
+                    </a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="pratappur-logo.png" alt="App Preview" class="rounded-2xl shadow-2xl w-full max-w-md mx-auto">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Section -->
+    <div class="stats-gradient py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-800 mb-2">1000+</div>
+                    <div class="text-gray-600">
+                        <span data-lang="en">Active Users</span>
+                        <span data-lang="hi">सक्रिय उपयोगकर्ता</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-800 mb-2">50+</div>
+                    <div class="text-gray-600">
+                        <span data-lang="en">Village Services</span>
+                        <span data-lang="hi">ग्राम सेवाएं</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-green-800 mb-2">24/7</div>
+                    <div class="text-gray-600">
+                        <span data-lang="en">Support Available</span>
+                        <span data-lang="hi">सहायता उपलब्ध</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">
+                <span data-lang="en">Main Features</span>
+                <span data-lang="hi">मुख्य विशेषताएं</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-info-circle text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                        <span data-lang="en">Village Information</span>
+                        <span data-lang="hi">गाँव की जानकारी</span>
+                    </h3>
+                    <p class="text-gray-600">
+                        <span data-lang="en">Complete information about our village and its rich heritage</span>
+                        <span data-lang="hi">हमारे गाँव और उसकी समृद्ध विरासत के बारे में पूरी जानकारी</span>
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-ambulance text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                        <span data-lang="en">Emergency Services</span>
+                        <span data-lang="hi">आपातकालीन सेवाएं</span>
+                    </h3>
+                    <p class="text-gray-600">
+                        <span data-lang="en">24/7 emergency services and important contact numbers</span>
+                        <span data-lang="hi">24/7 आपातकालीन सेवाएं और महत्वपूर्ण संपर्क नंबर</span>
+                    </p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-graduation-cap text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                        <span data-lang="en">Education</span>
+                        <span data-lang="hi">शिक्षा</span>
+                    </h3>
+                    <p class="text-gray-600">
+                        <span data-lang="en">Educational resources and opportunities for everyone</span>
+                        <span data-lang="hi">सभी के लिए शैक्षिक संसाधन और अवसर</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="gradient-bg py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">
+                <span data-lang="en">Download Now</span>
+                <span data-lang="hi">डाउनलोड करें</span>
+            </h2>
+
+            <!-- Latest Version Card -->
+            <div class="bg-white rounded-xl shadow-xl p-8 max-w-4xl mx-auto mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800">Version 7.0 
+                            <span class="ml-2 bg-green-500 text-white text-sm px-3 py-1 rounded-full">Latest</span>
+                        </h3>
+                        <p class="text-gray-600 mt-1">Released: December 2023</p>
+                    </div>
+                    <a href="#" class="download-btn text-white font-semibold px-8 py-3 rounded-full inline-flex items-center">
+                        <i class="fab fa-android mr-2"></i>
+                        <span data-lang="en">Download Latest</span>
+                        <span data-lang="hi">नवीनतम डाउनलोड करें</span>
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Features List -->
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-4">
+                            <span data-lang="en">New Features</span>
+                            <span data-lang="hi">नई सुविधाएं</span>
+                        </h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fab fa-google text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Google Login Integration</span>
+                                    <p class="text-sm text-gray-600">Secure and quick sign-in with your Google account</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-sync text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Cross-Device Sync</span>
+                                    <p class="text-sm text-gray-600">Seamlessly sync your data across all your devices</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-user-shield text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Profile Management</span>
+                                    <p class="text-sm text-gray-600">Personalized user profiles with preferences and settings</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Enhanced UI/UX Design</span>
+                                    <p class="text-sm text-gray-600">Modern interface with smooth animations and better experience</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-language text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Multi-language Support</span>
+                                    <p class="text-sm text-gray-600">Switch between Hindi and English languages</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Updates & Improvements -->
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-4">
+                            <span data-lang="en">Improvements</span>
+                            <span data-lang="hi">सुधार</span>
+                        </h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Enhanced Security</span>
+                                    <p class="text-sm text-gray-600">OAuth 2.0 authentication and data encryption</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-cloud text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Cloud Backup</span>
+                                    <p class="text-sm text-gray-600">Automatic backup of user data to Google Drive</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-circle-up text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Performance Boost</span>
+                                    <p class="text-sm text-gray-600">50% faster app loading and smoother transitions</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-mobile-alt text-blue-500 mt-1 mr-3"></i>
+                                <div>
+                                    <span class="font-medium">Offline Support</span>
+                                    <p class="text-sm text-gray-600">Access key features without internet connection</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Previous Versions -->
+            <div class="bg-white rounded-xl shadow-xl p-8 max-w-4xl mx-auto">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">
+                    <span data-lang="en">Previous Versions</span>
+                    <span data-lang="hi">पिछले संस्करण</span>
+                </h3>
+                
+                <div class="relative mb-8">
+                    <select id="versionSelect" class="w-full p-4 border rounded-lg appearance-none bg-white cursor-pointer text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="6.0">Version 6.0 (October 2023)</option>
+                        <option value="5.0">Version 5.0 (August 2023)</option>
+                        <option value="4.0">Version 4.0 (June 2023)</option>
+                        <option value="3.0">Version 3.0 (April 2023)</option>
+                        <option value="2.0">Version 2.0 (February 2023)</option>
+                        <option value="1.0">Version 1.0 (Initial Release - January 2023)</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                        <i class="fas fa-chevron-down text-gray-500"></i>
+                    </div>
+                </div>
+
+                <!-- Version Details (Dynamic Content) -->
+                <div id="versionDetails" class="mb-8">
+                    <!-- Previous version details will be shown here -->
+                </div>
+
+                <!-- Download Button for Previous Versions -->
+                <a href="#" id="downloadButton" class="download-btn text-white font-semibold px-8 py-3 rounded-full inline-flex items-center">
+                    <i class="fab fa-android mr-2"></i>
+                    <span data-lang="en">Download Selected Version</span>
+                    <span data-lang="hi">चयनित संस्करण डाउनलोड करें</span>
+                </a>
+
+                <!-- System Requirements -->
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <h4 class="font-semibold text-gray-800 mb-4">
+                        <span data-lang="en">System Requirements</span>
+                        <span data-lang="hi">सिस्टम आवश्यकताएं</span>
+                    </h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <i class="fas fa-mobile-alt text-2xl text-green-600 mb-2"></i>
+                            <p class="text-sm text-gray-600">Android 5.0+</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <i class="fas fa-memory text-2xl text-green-600 mb-2"></i>
+                            <p class="text-sm text-gray-600">2GB RAM</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <i class="fas fa-hdd text-2xl text-green-600 mb-2"></i>
+                            <p class="text-sm text-gray-600">50MB Storage</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 rounded-lg">
+                            <i class="fas fa-wifi text-2xl text-green-600 mb-2"></i>
+                            <p class="text-sm text-gray-600">Internet Connection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updates Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-16">
+                <span data-lang="en">Latest Updates</span>
+                <span data-lang="hi">नया अपडेट</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-bell text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">
+                                <span data-lang="en">New Features Added</span>
+                                <span data-lang="hi">नया फीचर जोड़ा गया</span>
+                            </h3>
+                            <p class="text-gray-500 text-sm">
+                                <span data-lang="en">December 2023</span>
+                                <span data-lang="hi">दिसंबर 2023</span>
+                            </p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span data-lang="en">Offline Mode Support</span>
+                            <span data-lang="hi">ऑफ़लाइन मोड सपोर्ट</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span data-lang="en">Enhanced Photo Gallery</span>
+                            <span data-lang="hi">बेहतर फोटो गैलरी</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span data-lang="en">Emergency Services Integration</span>
+                            <span data-lang="hi">आपातकालीन सेवा एकीकरण</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-rocket text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">
+                                <span data-lang="en">Coming Soon</span>
+                                <span data-lang="hi">जल्द ही आ रहा है</span>
+                            </h3>
+                            <p class="text-gray-500 text-sm">
+                                <span data-lang="en">Early 2024</span>
+                                <span data-lang="hi">प्रारंभ 2024</span>
+                            </p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li>
+                            <i class="fas fa-clock text-green-500 mr-2"></i>
+                            <span data-lang="en">Live News Updates</span>
+                            <span data-lang="hi">लाइव न्यूज़ अपडेट</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock text-green-500 mr-2"></i>
+                            <span data-lang="en">Community Chat</span>
+                            <span data-lang="hi">समुदाय चैट</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock text-green-500 mr-2"></i>
+                            <span data-lang="en">Event Calendar</span>
+                            <span data-lang="hi">इवेंट कैलेंडर</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="gradient-bg py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold text-white mb-8">
+                <span data-lang="en">Contact Us</span>
+                <span data-lang="hi">संपर्क करें</span>
+            </h2>
+            <div class="bg-white rounded-xl shadow-xl p-8 max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-4">
+                            <span data-lang="en">Developer</span>
+                            <span data-lang="hi">डेवलपर</span>
+                        </h3>
+                        <p class="text-gray-600">Ayush Singh</p>
+                        <p class="text-gray-600">IT4B.in</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-4">
+                            <span data-lang="en">Support</span>
+                            <span data-lang="hi">सहायता</span>
+                        </h3>
+                        <p class="text-gray-600">
+                            <span data-lang="en">Email: support@pratappur.com</span>
+                            <span data-lang="hi">ईमेल: support@pratappur.com</span>
+                        </p>
+                        <p class="text-gray-600">
+                            <span data-lang="en">Phone: +91 XXXXXXXXXX</span>
+                            <span data-lang="hi">फोन: +91 XXXXXXXXXX</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-white font-semibold mb-4">
+                        <span data-lang="en">About</span>
+                        <span data-lang="hi">हमारे बारे में</span>
+                    </h4>
+                    <p class="text-sm">
+                        <span data-lang="en">Pratappur App - Your complete digital companion for village services and information.</span>
+                        <span data-lang="hi">प्रतापपुर ऐप - ग्राम सेवाओं और जानकारी के लिए आपका पूर्ण डिजिटल साथी।</span>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">
+                        <span data-lang="en">Quick Links</span>
+                        <span data-lang="hi">त्वरित लिंक</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <a href="#features" class="hover:text-white">
+                                <span data-lang="en">Features</span>
+                                <span data-lang="hi">विशेषताएं</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#download" class="hover:text-white">
+                                <span data-lang="en">Download</span>
+                                <span data-lang="hi">डाउनलोड</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="hover:text-white">
+                                <span data-lang="en">Contact</span>
+                                <span data-lang="hi">संपर्क</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">
+                        <span data-lang="en">Connect</span>
+                        <span data-lang="hi">कनेक्ट</span>
+                    </h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-white">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">
+                        <span data-lang="en">Newsletter</span>
+                        <span data-lang="hi">न्यूज़लेटर</span>
+                    </h4>
+                    <form class="flex">
+                        <input type="email" placeholder="Enter your email" class="px-4 py-2 rounded-l-lg w-full">
+                        <button class="bg-green-600 text-white px-4 py-2 rounded-r-lg hover:bg-green-700">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-sm text-center">
+                <p>
+                    <span data-lang="en">&copy; 2024 Pratappur App. All rights reserved.</span>
+                    <span data-lang="hi">&copy; 2024 प्रतापपुर ऐप। सभी अधिकार सुरक्षित।</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle Functionality
+        document.getElementById('langToggle').addEventListener('change', function() {
+            const mainContent = document.getElementById('mainContent');
+            if (this.checked) {
+                mainContent.classList.add('lang-hi');
+                localStorage.setItem('language', 'hi');
+            } else {
+                mainContent.classList.remove('lang-hi');
+                localStorage.setItem('language', 'en');
+            }
+        });
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'hi') {
+                document.getElementById('langToggle').checked = true;
+                document.getElementById('mainContent').classList.add('lang-hi');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Version selection functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const versionSelect = document.getElementById('versionSelect');
+            const downloadButton = document.getElementById('downloadButton');
+            
+            function updateVersionInfo(version) {
+                // Hide all version info
+                document.querySelectorAll('.version-info').forEach(info => {
+                    info.classList.add('hidden');
+                });
+                
+                // Show selected version info
+                const selectedInfo = document.querySelector(`.version-info[data-version="${version}"]`);
+                if (selectedInfo) {
+                    selectedInfo.classList.remove('hidden');
+                }
+                
+                // Update download button text
+                const versionText = version === '7.0' ? 'Latest' : version;
+                downloadButton.querySelector('[data-lang="en"]').textContent = `Download v${version}`;
+                downloadButton.querySelector('[data-lang="hi"]').textContent = `v${version} डाउनलोड करें`;
+            }
+            
+            // Initial update
+            updateVersionInfo('7.0');
+            
+            // Update on change
+            versionSelect.addEventListener('change', function() {
+                updateVersionInfo(this.value);
+            });
+        });
+    </script>
+</body>
+</html>
